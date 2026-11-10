@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:paddingTop="7dp" android:paddingBottom="10dp"
+    android:paddingStart="10dp" android:paddingEnd="10dp"
+    android:background="@drawable/widget_background">
+    <LinearLayout
+        android:id="@+id/widget_header"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="center_vertical">
+        <TextView android:id="@+id/badge" android:textColor="#6B7280" android:background="@drawable/badge_stale" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="SETUP" android:textSize="10sp" android:textStyle="bold"
+            android:paddingStart="7dp" android:paddingEnd="7dp" android:paddingTop="2dp" android:paddingBottom="2dp" />
+        <TextView android:id="@+id/eta_route" android:textColor="@color/widget_text" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:layout_marginStart="7dp"
+            android:text="—" android:textSize="11sp" android:textStyle="bold" android:maxLines="1" android:ellipsize="end" />
+        <ImageButton android:id="@+id/swap_button" android:layout_width="30dp" android:layout_height="30dp"
+            android:src="@drawable/ic_swap_horiz" android:background="@drawable/swap_button_background"
+            android:contentDescription="Swap direction" android:scaleType="centerInside" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_below="@id/widget_header" android:layout_marginTop="3dp"
+        android:layout_marginEnd="30dp" android:orientation="horizontal" android:gravity="center_vertical">
+        <TextView android:id="@+id/eta_next" android:textColor="@color/widget_text" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Set up widget" android:textSize="19sp" android:textStyle="bold" android:maxLines="1" android:ellipsize="end" />
+        <Chronometer android:id="@+id/eta_countdown"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="@color/widget_text" android:textSize="19sp" android:textStyle="bold"
+            android:maxLines="1" android:visibility="gone" android:countDown="true" />
+        <TextView android:id="@+id/sep1" android:textColor="@color/widget_text" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginStart="6dp" android:layout_marginEnd="6dp"
+            android:text="·" android:textSize="14sp" android:visibility="gone" />
+        <TextView android:id="@+id/eta_second" android:textColor="@color/widget_text" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="" android:textSize="14sp" android:maxLines="1" android:ellipsize="end" android:visibility="gone" />
+        <TextView android:id="@+id/sep2" android:textColor="@color/widget_text" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginStart="6dp" android:layout_marginEnd="6dp"
+            android:text="·" android:textSize="14sp" android:visibility="gone" />
+        <TextView android:id="@+id/eta_third" android:textColor="@color/widget_text" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="" android:textSize="14sp" android:maxLines="1" android:ellipsize="end" android:visibility="gone" />
+        <TextView android:id="@+id/last_train_tag" android:textColor="@color/widget_text" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginStart="6dp" android:text="(Last Train)" android:textSize="10sp" android:textStyle="bold"
+            android:visibility="gone" />
+    </LinearLayout>
+        <ImageButton android:id="@+id/settings_button" android:layout_width="24dp" android:layout_height="24dp"
+            android:layout_alignParentBottom="true" android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_settings" android:background="@drawable/settings_button_background"
+            android:contentDescription="Widget settings" android:scaleType="centerInside" />
+</RelativeLayout>

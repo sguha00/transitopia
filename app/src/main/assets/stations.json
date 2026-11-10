@@ -1,0 +1,565 @@
+{
+  "stations": [
+    {
+      "id": "12TH",
+      "name": "12th Street / Oakland City Center",
+      "lat": 37.803482,
+      "lon": -122.27163,
+      "platforms": [
+        "K10-1",
+        "K10-2",
+        "K10-3"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "16TH",
+      "name": "16th Street / Mission",
+      "lat": 37.765173,
+      "lon": -122.419704,
+      "platforms": [
+        "M50-1",
+        "M50-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "19TH",
+      "name": "19th Street Oakland",
+      "lat": 37.808078,
+      "lon": -122.268758,
+      "platforms": [
+        "K20-1",
+        "K20-2",
+        "K20-3"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "24TH",
+      "name": "24th Street / Mission",
+      "lat": 37.752419,
+      "lon": -122.418468,
+      "platforms": [
+        "M60-1",
+        "M60-2",
+        "M60-B"
+      ],
+      "isTerminal": true
+    },
+    {
+      "id": "ANTC",
+      "name": "Antioch",
+      "lat": 37.995373,
+      "lon": -121.780346,
+      "platforms": [
+        "E30-1",
+        "E30-2"
+      ],
+      "isTerminal": true
+    },
+    {
+      "id": "ASHB",
+      "name": "Ashby",
+      "lat": 37.853072,
+      "lon": -122.269771,
+      "platforms": [
+        "R10-1",
+        "R10-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "BALB",
+      "name": "Balboa Park",
+      "lat": 37.721747,
+      "lon": -122.447457,
+      "platforms": [
+        "M80-1",
+        "M80-2",
+        "M80-B"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "BAYF",
+      "name": "Bay Fair",
+      "lat": 37.696908,
+      "lon": -122.126446,
+      "platforms": [
+        "A50-1",
+        "A50-2"
+      ],
+      "isTerminal": true
+    },
+    {
+      "id": "BERY",
+      "name": "Berryessa / North San Jose",
+      "lat": 37.368473,
+      "lon": -121.874681,
+      "platforms": [
+        "S50-1",
+        "S50-2"
+      ],
+      "isTerminal": true
+    },
+    {
+      "id": "CAST",
+      "name": "Castro Valley",
+      "lat": 37.690737,
+      "lon": -122.075601,
+      "platforms": [
+        "L10-1",
+        "L10-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "CIVC",
+      "name": "Civic Center / UN Plaza",
+      "lat": 37.779408,
+      "lon": -122.413826,
+      "platforms": [
+        "M40-1",
+        "M40-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "COLS",
+      "name": "Coliseum",
+      "lat": 37.753576,
+      "lon": -122.196716,
+      "platforms": [
+        "A30-1",
+        "A30-2",
+        "H10"
+      ],
+      "isTerminal": true
+    },
+    {
+      "id": "COLM",
+      "name": "Colma",
+      "lat": 37.684635,
+      "lon": -122.466157,
+      "platforms": [
+        "W10-1",
+        "W10-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "CONC",
+      "name": "Concord",
+      "lat": 37.973757,
+      "lon": -122.029072,
+      "platforms": [
+        "C60-1",
+        "C60-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "DALY",
+      "name": "Daly City",
+      "lat": 37.706259,
+      "lon": -122.468908,
+      "platforms": [
+        "M90-1",
+        "M90-2",
+        "M90-3",
+        "M90-B"
+      ],
+      "isTerminal": true
+    },
+    {
+      "id": "DBRK",
+      "name": "Downtown Berkeley",
+      "lat": 37.87011,
+      "lon": -122.268109,
+      "platforms": [
+        "R20-1",
+        "R20-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "DUBL",
+      "name": "Dublin / Pleasanton",
+      "lat": 37.701646,
+      "lon": -121.899229,
+      "platforms": [
+        "L30-1",
+        "L30-2"
+      ],
+      "isTerminal": true
+    },
+    {
+      "id": "DELN",
+      "name": "El Cerrito Del Norte",
+      "lat": 37.925184,
+      "lon": -122.316892,
+      "platforms": [
+        "R50-1",
+        "R50-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "PLZA",
+      "name": "El Cerrito Plaza",
+      "lat": 37.90261,
+      "lon": -122.29892,
+      "platforms": [
+        "R40-1",
+        "R40-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "EMBR",
+      "name": "Embarcadero",
+      "lat": 37.792762,
+      "lon": -122.397037,
+      "platforms": [
+        "M16-1",
+        "M16-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "FRMT",
+      "name": "Fremont",
+      "lat": 37.55748,
+      "lon": -121.976619,
+      "platforms": [
+        "A90-1",
+        "A90-2"
+      ],
+      "isTerminal": true
+    },
+    {
+      "id": "FTVL",
+      "name": "Fruitvale",
+      "lat": 37.774841,
+      "lon": -122.224081,
+      "platforms": [
+        "A20-1",
+        "A20-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "GLEN",
+      "name": "Glen Park",
+      "lat": 37.733235,
+      "lon": -122.433515,
+      "platforms": [
+        "M70-1",
+        "M70-2",
+        "M70-B"
+      ],
+      "isTerminal": true
+    },
+    {
+      "id": "HAYW",
+      "name": "Hayward",
+      "lat": 37.669699,
+      "lon": -122.086958,
+      "platforms": [
+        "A60-1",
+        "A60-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "LAFY",
+      "name": "Lafayette",
+      "lat": 37.893183,
+      "lon": -122.12462,
+      "platforms": [
+        "C30-1",
+        "C30-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "LAKE",
+      "name": "Lake Merritt",
+      "lat": 37.797322,
+      "lon": -122.265247,
+      "platforms": [
+        "A10-1",
+        "A10-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "MCAR",
+      "name": "MacArthur",
+      "lat": 37.828803,
+      "lon": -122.267105,
+      "platforms": [
+        "K30-1",
+        "K30-2",
+        "K30-3",
+        "K30-4"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "MLBR",
+      "name": "Millbrae",
+      "lat": 37.600237,
+      "lon": -122.386757,
+      "platforms": [
+        "W40-3"
+      ],
+      "isTerminal": true
+    },
+    {
+      "id": "MLPT",
+      "name": "Milpitas",
+      "lat": 37.410277,
+      "lon": -121.891081,
+      "platforms": [
+        "S40-1",
+        "S40-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "MONT",
+      "name": "Montgomery Street",
+      "lat": 37.789173,
+      "lon": -122.401587,
+      "platforms": [
+        "M20-1",
+        "M20-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "NBRK",
+      "name": "North Berkeley",
+      "lat": 37.874005,
+      "lon": -122.283523,
+      "platforms": [
+        "R30-1",
+        "R30-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "NCON",
+      "name": "North Concord / Martinez",
+      "lat": 38.003383,
+      "lon": -122.024512,
+      "platforms": [
+        "C70-1",
+        "C70-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "OAKL",
+      "name": "Oakland International Airport",
+      "lat": 37.713256,
+      "lon": -122.212237,
+      "platforms": [
+        "H40"
+      ],
+      "isTerminal": true
+    },
+    {
+      "id": "ORIN",
+      "name": "Orinda",
+      "lat": 37.878481,
+      "lon": -122.183667,
+      "platforms": [
+        "C20-1",
+        "C20-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "PITT",
+      "name": "Pittsburg / Bay Point",
+      "lat": 38.01891,
+      "lon": -121.944236,
+      "platforms": [
+        "C80-1",
+        "C80-2"
+      ],
+      "isTerminal": true
+    },
+    {
+      "id": "PCTR",
+      "name": "Pittsburg Center",
+      "lat": 38.016847,
+      "lon": -121.889062,
+      "platforms": [
+        "E20-1",
+        "E20-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "PHIL",
+      "name": "Pleasant Hill / Contra Costa Centre",
+      "lat": 37.928434,
+      "lon": -122.055971,
+      "platforms": [
+        "C50-1",
+        "C50-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "POWL",
+      "name": "Powell Street",
+      "lat": 37.784606,
+      "lon": -122.407331,
+      "platforms": [
+        "M30-1",
+        "M30-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "RICH",
+      "name": "Richmond",
+      "lat": 37.936758,
+      "lon": -122.353047,
+      "platforms": [
+        "R60-1",
+        "R60-2"
+      ],
+      "isTerminal": true
+    },
+    {
+      "id": "ROCK",
+      "name": "Rockridge",
+      "lat": 37.844755,
+      "lon": -122.251235,
+      "platforms": [
+        "C10-1",
+        "C10-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "SBRN",
+      "name": "San Bruno",
+      "lat": 37.63773,
+      "lon": -122.416326,
+      "platforms": [
+        "W30-1",
+        "W30-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "SFIA",
+      "name": "San Francisco International Airport",
+      "lat": 37.616091,
+      "lon": -122.391954,
+      "platforms": [
+        "Y10-1",
+        "Y10-2",
+        "Y10-3"
+      ],
+      "isTerminal": true
+    },
+    {
+      "id": "SANL",
+      "name": "San Leandro",
+      "lat": 37.721784,
+      "lon": -122.16074,
+      "platforms": [
+        "A40-1",
+        "A40-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "SHAY",
+      "name": "South Hayward",
+      "lat": 37.63434,
+      "lon": -122.057182,
+      "platforms": [
+        "A70-1",
+        "A70-2"
+      ],
+      "isTerminal": true
+    },
+    {
+      "id": "SSAN",
+      "name": "South San Francisco",
+      "lat": 37.664462,
+      "lon": -122.444211,
+      "platforms": [
+        "W20-1",
+        "W20-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "UCTY",
+      "name": "Union City",
+      "lat": 37.590735,
+      "lon": -122.017248,
+      "platforms": [
+        "A80-1",
+        "A80-2"
+      ],
+      "isTerminal": true
+    },
+    {
+      "id": "WCRK",
+      "name": "Walnut Creek",
+      "lat": 37.905791,
+      "lon": -122.067327,
+      "platforms": [
+        "C40-1",
+        "C40-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "WARM",
+      "name": "Warm Springs / South Fremont",
+      "lat": 37.502285,
+      "lon": -121.939395,
+      "platforms": [
+        "S20-1",
+        "S20-2"
+      ],
+      "isTerminal": true
+    },
+    {
+      "id": "WDUB",
+      "name": "West Dublin / Pleasanton",
+      "lat": 37.699721,
+      "lon": -121.928277,
+      "platforms": [
+        "L20-1",
+        "L20-2"
+      ],
+      "isTerminal": false
+    },
+    {
+      "id": "WOAK",
+      "name": "West Oakland",
+      "lat": 37.804888,
+      "lon": -122.295151,
+      "platforms": [
+        "M10-1",
+        "M10-2"
+      ],
+      "isTerminal": false
+    }
+  ],
+  "source": "BART GTFS stops.txt (https://www.bart.gov/dev/schedules/google_transit.zip)",
+  "note": "stop_id->parent_station mapping lets GTFS-RT trip updates be matched by terminal (last stop) without stale trip_id maps"
+}

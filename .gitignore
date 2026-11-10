@@ -1,0 +1,31 @@
+# Local Android / Gradle state
+.gradle/
+.kotlin/
+.idea/
+*.iml
+local.properties
+**/build/
+.DS_Store
+*.log
+
+# Generated install packages and signing material
+*.apk
+*.aab
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.pem
+*.key
+keystore.properties
+signing.properties
+
+# Local credentials and environment settings
+.env
+.env.*
+!.env.example
+credentials.json
+service-account*.json
+google-services.json
+id_rsa*
+id_ed25519*

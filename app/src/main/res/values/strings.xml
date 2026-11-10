@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Transitopia</string>
+    <string name="widget_description">Next BART train from a station to a terminal station, from GTFS-Realtime.</string>
+    <string name="widget_setup_title">Set up Transitopia</string>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
+    <!-- Match the selected Garden T, including the adaptive safe-area scaling. -->
+    <group android:pivotX="54" android:pivotY="54" android:scaleX="0.82" android:scaleY="0.82">
+        <path android:fillColor="#F4B34D" android:pathData="M80,31a7,7 0,1 1,-14,0a7,7 0,1 1,14,0z" />
+        <path android:fillColor="#195B45" android:pathData="M37,35c-11,0 -13,-12 -13,-12 12,0 16,5 13,12z" />
+        <path android:fillColor="#195B45" android:fillType="evenOdd" android:pathData="M29,39h37c7,0 12,8 16,18v3H28a4,4 0,0 1,-4,-4V44a5,5 0,0 1,5,-5z M30.5,44h5.0a1.5,1.5 0,0 1,1.5,1.5v5.0a1.5,1.5 0,0 1,-1.5,1.5h-5.0a1.5,1.5 0,0 1,-1.5,-1.5v-5.0a1.5,1.5 0,0 1,1.5,-1.5z M42.5,44h5.0a1.5,1.5 0,0 1,1.5,1.5v5.0a1.5,1.5 0,0 1,-1.5,1.5h-5.0a1.5,1.5 0,0 1,-1.5,-1.5v-5.0a1.5,1.5 0,0 1,1.5,-1.5z M54.5,44h5.0a1.5,1.5 0,0 1,1.5,1.5v5.0a1.5,1.5 0,0 1,-1.5,1.5h-5.0a1.5,1.5 0,0 1,-1.5,-1.5v-5.0a1.5,1.5 0,0 1,1.5,-1.5z M65,44h2c3,1 5,4 7,8h-9z M28,55.25h43v1.5H28z" />
+        <path android:fillColor="#195B45" android:fillType="evenOdd" android:pathData="M46,60h16v21H46z M52,66h4v15h-4z" />
+        <path android:strokeColor="#F4B34D" android:strokeWidth="2.5" android:strokeLineCap="round" android:pathData="M77,55h2" />
+    </group>
+</vector>

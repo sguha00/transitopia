@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ic_launcher_background">#E7F5D6</color>
+    <color name="screen_background">#101C16</color>
+    <color name="widget_background">#172337</color>
+    <color name="widget_border">#4B6487</color>
+    <color name="widget_text">#EDF3FF</color>
+    <color name="widget_icon">#C5D4EA</color>
+    <color name="swap_icon">#BFDBFE</color>
+    <color name="swap_background">#273C59</color>
+    <color name="swap_border">#688BB9</color>
+    <color name="swap_pressed">#3B5578</color>
+</resources>
