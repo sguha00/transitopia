@@ -73,6 +73,18 @@ class BartLogicTest {
         assertEquals("14 min", BartLogic.formatNextEta(840))
         assertEquals("12 min", BartLogic.formatLaterEta(750))
     }
+    @Test fun leavingStartsAtZeroAndNeverFormatsNegativeTimes() {
+        assertEquals("0:01", BartLogic.formatNextEta(1))
+        assertEquals("Leaving", BartLogic.formatNextEta(0))
+        assertEquals("Leaving", BartLogic.formatNextEta(-1))
+        assertEquals("Leaving", BartLogic.formatLaterEta(0))
+    }
+    @Test fun departureAtZeroIsKeptThenNextTrainPromoted() {
+        fun trip(dep: Long) = listOf(Triple("EMBR", dep, 0L), Triple("24TH", dep + 600, 0L))
+        val trips = listOf(trip(now), trip(now + 120))
+        assertEquals(listOf(now, now + 120), BartLogic.findNextTrains(trips, "EMBR", "24TH", now).map { it.departureEpochSec })
+        assertEquals(listOf(now + 120), BartLogic.findNextTrains(trips, "EMBR", "24TH", now + 1).map { it.departureEpochSec })
+    }
     @Test fun detailedCountsTotalForLastTrain() {
         fun trip(dep: Long) = listOf(Triple("EMBR", dep, 0L), Triple("24TH", dep + 600, 0L))
         val (trains, total) = BartLogic.findNextTrainsDetailed(listOf(trip(now + 300)), "EMBR", "24TH", now, 3)

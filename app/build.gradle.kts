@@ -10,8 +10,8 @@ android {
         applicationId = "com.transitopia.bartwidget"
         minSdk = 26
         targetSdk = 35
-        versionCode = 3
-        versionName = "1.2"
+        versionCode = 4
+        versionName = "1.3"
         testInstrumentationRunner = "com.transitopia.bartwidget.WidgetLayoutInstrumentation"
     }
     buildTypes { release { isMinifyEnabled = false } }

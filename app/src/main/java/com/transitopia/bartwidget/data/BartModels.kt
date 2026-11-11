@@ -32,13 +32,13 @@ object BartLogic {
 
     /** Next train: mm:ss countdown under 10 min, whole minutes otherwise. */
     fun formatNextEta(etaSec: Long): String = when {
-        etaSec < 0 -> "Now"
+        etaSec <= 0 -> "Leaving"
         etaSec < 600 -> "${etaSec / 60}:${(etaSec % 60).toString().padStart(2, '0')}"
         else -> "${etaSec / 60} min"
     }
 
     fun formatLaterEta(etaSec: Long): String =
-        if (etaSec < 0) "Now" else "${etaSec / 60} min"
+        if (etaSec <= 0) "Leaving" else "${etaSec / 60} min"
 
     /**
      * Pure matching logic (unit-testable). A trip matches when the origin appears in its

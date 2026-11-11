@@ -6,8 +6,10 @@ An Android home-screen widget showing the next three BART trains between two sta
 
 - Choose a boarding station and destination for each widget. Destinations can be intermediate stops; the train does not have to terminate there.
 - Compact 3×1 layout with three ETAs, a direction-reversal button, and a settings cog.
-- Below ten minutes, the next train uses Android's native countdown view to display seconds. Later trains show whole minutes.
+- Below ten minutes, the next train displays seconds using a bounded per-second live updater. Later trains show whole minutes.
 - Tapping refresh, reversing direction, or saving widget settings fetches fresh data and starts a 15-minute live window. Further network refreshes are requested at +5 and +10 minutes.
+- At zero seconds, the widget shows **Leaving** and refreshes the prediction. Once the departure passes, the next cached train takes its place.
+- A user-started foreground service keeps the live display ticking; Android requires a live-update notification, which offers **Stop live updates**. The service stops when all live windows expire. No continuously running native timer can display negative times.
 - After the live window, the widget shows **Tap to Refresh**. Android may defer background work, particularly during power-saving modes.
 - Settings show **Add Widget** for a new widget and **Update Widget** for an existing one.
 - Garden T adaptive icon, including a monochrome layer, with matching light and dark app themes.
@@ -41,7 +43,7 @@ adb shell am instrument -w \
   com.transitopia.bartwidget.test/com.transitopia.bartwidget.WidgetLayoutInstrumentation
 ```
 
-The device checks exercise RemoteViews inflation, native per-second countdown ticking without provider broadcasts, route-cache invalidation, light/dark text contrast, three-ETA fit at several widths, and settings-cog spacing. Unit tests cover trip parsing, directional/intermediate-stop matching, sorting, and ETA formatting.
+The device checks exercise RemoteViews inflation, per-second ticking through zero, prediction refresh, next-train promotion, live-window expiry, route-cache invalidation, light/dark text contrast, three-ETA fit at several widths, and settings-cog spacing. Unit tests cover trip parsing, directional/intermediate-stop matching, sorting, and ETA formatting.
 
 ## Data and matching
 

@@ -29,3 +29,6 @@ service-account*.json
 google-services.json
 id_rsa*
 id_ed25519*
+
+# Local agent tooling and installed workspace skills
+.agents/

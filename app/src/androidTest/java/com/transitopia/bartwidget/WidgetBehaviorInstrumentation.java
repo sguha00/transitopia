@@ -3,64 +3,67 @@ package com.transitopia.bartwidget;
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
-import android.widget.Chronometer;
 import android.widget.FrameLayout;
-import android.widget.RemoteViews;
+import android.widget.TextView;
+import com.transitopia.bartwidget.widget.BartWidgetProvider;
+import com.transitopia.bartwidget.widget.WidgetLiveTicker;
 import com.transitopia.bartwidget.widget.WidgetPrefs;
+import java.util.ArrayList;
+import java.util.List;
+import kotlin.Unit;
 
-/** Device regressions for route cache invalidation and launcher-owned countdown ticking. */
+/** Exercises the same ticker and RemoteViews used by the widget, across the zero boundary. */
 public class WidgetBehaviorInstrumentation {
     public static String runChecks(Instrumentation driver) {
         Activity activity = null;
+        final WidgetLiveTicker[] ticker = new WidgetLiveTicker[1];
+        final int id = 900001;
         try {
-            final int testId = 900001;
-            WidgetPrefs.INSTANCE.save(driver.getTargetContext(), testId, "24TH", "EMBR");
-            WidgetPrefs.INSTANCE.setLive(driver.getTargetContext(), testId, System.currentTimeMillis()/1000 + 900,
+            WidgetPrefs.INSTANCE.save(driver.getTargetContext(), id, "24TH", "EMBR");
+            WidgetPrefs.INSTANCE.setLive(driver.getTargetContext(), id, System.currentTimeMillis()/1000 + 900,
                 java.util.Arrays.asList(System.currentTimeMillis()/1000 + 300), false, null);
-            WidgetPrefs.INSTANCE.save(driver.getTargetContext(), testId, "EMBR", "24TH");
-            if (!WidgetPrefs.INSTANCE.departures(driver.getTargetContext(), testId).isEmpty()) throw new AssertionError("Old route departures survived a station change");
-            if (WidgetPrefs.INSTANCE.liveUntil(driver.getTargetContext(), testId) != 0) throw new AssertionError("Old route live window survived");
-
+            WidgetPrefs.INSTANCE.save(driver.getTargetContext(), id, "EMBR", "24TH");
+            if (!WidgetPrefs.INSTANCE.departures(driver.getTargetContext(), id).isEmpty()) throw new AssertionError("Old route departures survived");
             activity = driver.startActivitySync(new Intent(driver.getTargetContext(), MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             final Activity host = activity;
-            final Chronometer[] timer = new Chronometer[1];
+            final List<String> samples = new ArrayList<>();
+            final List<Long> refreshTimes = new ArrayList<>();
+            final long departure = System.currentTimeMillis()/1000 + 4;
+            final boolean[] idle = {false};
             driver.runOnMainSync(() -> {
-                RemoteViews remote = new RemoteViews(driver.getTargetContext().getPackageName(), R.layout.bart_widget_layout);
-                remote.setViewVisibility(R.id.eta_next, View.GONE);
-                remote.setViewVisibility(R.id.eta_countdown, View.VISIBLE);
-                remote.setChronometerCountDown(R.id.eta_countdown, true);
-                remote.setChronometer(R.id.eta_countdown, SystemClock.elapsedRealtime() + 120000, null, true);
-                FrameLayout root = new FrameLayout(host);
-                View view = remote.apply(host, root);
-                root.addView(view);
-                host.setContentView(root);
-                timer[0] = view.findViewById(R.id.eta_countdown);
+                WidgetPrefs.INSTANCE.setLive(host, id, departure + 3,
+                    java.util.Arrays.asList(departure, departure + 120), false, null);
+                ticker[0] = new WidgetLiveTicker(host, () -> new int[]{id}, (widgetId, now) -> {
+                    FrameLayout root = new FrameLayout(host);
+                    View view = new BartWidgetProvider().createViews(host, widgetId, false, now).apply(host, root);
+                    root.addView(view);
+                    host.setContentView(root);
+                    String text = ((TextView)view.findViewById(R.id.eta_next)).getText().toString();
+                    if (text.contains("-")) throw new AssertionError("Negative ETA: " + text);
+                    if (now < departure && text.equals("Leaving")) throw new AssertionError("Leaving shown before zero");
+                    if (now == departure && !text.equals("Leaving")) throw new AssertionError("Missing Leaving at zero: " + text);
+                    if (now > departure && now < departure + 3 && !text.startsWith("1:")) throw new AssertionError("Next train was not promoted: " + text);
+                    samples.add(text);
+                    return Unit.INSTANCE;
+                }, widgetId -> { refreshTimes.add(System.currentTimeMillis()/1000); return Unit.INSTANCE; },
+                    () -> { idle[0] = true; return Unit.INSTANCE; }, new android.os.Handler(android.os.Looper.getMainLooper()));
+                ticker[0].start();
             });
-            String previous = read(driver, timer[0]);
-            StringBuilder samples = new StringBuilder(previous);
-            // No widget broadcasts or provider updates during this test.
-            for (int i = 0; i < 6; i++) {
-                SystemClock.sleep(1100);
-                String current = read(driver, timer[0]);
-                if (current.equals(previous)) throw new AssertionError("Countdown did not tick: " + samples);
-                samples.append(" → ").append(current);
-                previous = current;
-            }
-            driver.getTargetContext().getSharedPreferences("bart_widget_prefs", 0).edit()
-                .remove("origin_"+testId).remove("terminal_"+testId).remove("deps_"+testId)
-                .remove("lastTrain_"+testId).remove("error_"+testId).remove("liveUntil_"+testId)
-                .remove("updated_"+testId).commit();
-            return "PASS route cache invalidation; native countdown without provider updates: " + samples;
+            SystemClock.sleep(8500);
+            driver.runOnMainSync(() -> {
+                if (!samples.contains("Leaving")) throw new AssertionError("Zero transition not observed: " + samples);
+                if (refreshTimes.size() != 1 || refreshTimes.get(0) != departure) throw new AssertionError("Expected one prediction refresh at zero: " + refreshTimes);
+                if (!idle[0] || !samples.contains("Tap to Refresh")) throw new AssertionError("Ticker did not stop at end of live window");
+            });
+            return "PASS route invalidation, refresh at zero, promotion, live expiry: " + samples;
         } finally {
+            driver.runOnMainSync(() -> { if (ticker[0] != null) ticker[0].stop(); });
+            android.content.SharedPreferences.Editor edit = driver.getTargetContext().getSharedPreferences("bart_widget_prefs", 0).edit();
+            for (String key : new String[]{"origin_", "terminal_", "deps_", "lastTrain_", "error_", "liveUntil_", "updated_", "boundary_"}) edit.remove(key + id);
+            edit.commit();
             if (activity != null) { final Activity closing = activity; driver.runOnMainSync(closing::finish); }
         }
-    }
-    private static String read(Instrumentation driver, Chronometer timer) {
-        final String[] text = new String[1];
-        driver.runOnMainSync(() -> text[0] = timer.getText().toString());
-        return text[0];
     }
 }

@@ -9,11 +9,15 @@ import org.json.JSONObject
 import java.util.concurrent.TimeUnit
 
 class BartRepository(private val context: Context) {
-    private val client = OkHttpClient.Builder()
-        .callTimeout(8, TimeUnit.SECONDS)
-        .connectTimeout(8, TimeUnit.SECONDS).readTimeout(8, TimeUnit.SECONDS).build()
+    companion object {
+        private val client = OkHttpClient.Builder()
+            .callTimeout(8, TimeUnit.SECONDS)
+            .connectTimeout(8, TimeUnit.SECONDS).readTimeout(8, TimeUnit.SECONDS).build()
+        @Volatile private var cachedStations: List<Station>? = null
+    }
 
     fun loadStations(): List<Station> {
+        cachedStations?.let { return it }
         val json = context.assets.open("stations.json").bufferedReader().use { it.readText() }
         val arr = JSONObject(json).getJSONArray("stations")
         return List(arr.length()) { i ->
@@ -23,7 +27,7 @@ class BartRepository(private val context: Context) {
                 platforms = List(o.getJSONArray("platforms").length()) { o.getJSONArray("platforms").getString(it) },
                 isTerminal = o.getBoolean("isTerminal")
             )
-        }.sortedBy { it.name }
+        }.sortedBy { it.name }.also { cachedStations = it }
     }
 
     /** Next [count] trains plus total matching trips left in the feed (for Last Train detection). */

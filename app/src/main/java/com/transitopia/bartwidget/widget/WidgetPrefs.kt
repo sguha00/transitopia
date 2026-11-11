@@ -11,7 +11,7 @@ object WidgetPrefs {
             .putString("terminal_$appWidgetId", terminal)
         if (changed) {
             edit.remove("deps_$appWidgetId").remove("lastTrain_$appWidgetId")
-                .remove("error_$appWidgetId").remove("liveUntil_$appWidgetId")
+                .remove("error_$appWidgetId").remove("liveUntil_$appWidgetId").remove("boundary_$appWidgetId")
         }
         edit.apply()
     }
@@ -35,6 +35,22 @@ object WidgetPrefs {
             .putLong("updated_$id", System.currentTimeMillis() / 1000)
             .apply()
     }
+    /** Atomically request one prediction refresh per route/departure, even if alarms overlap ticks. */
+    @Synchronized
+    fun claimDepartureRefresh(context: Context, id: Int, now: Long): Boolean {
+        if (liveUntil(context, id) <= now) return false
+        val departure = departures(context, id).firstOrNull()?.takeIf { it <= now } ?: return false
+        val key = "${origin(context, id)}:${terminal(context, id)}:$departure"
+        val prefs = context.getSharedPreferences(FILE, Context.MODE_PRIVATE)
+        if (prefs.getString("boundary_$id", null) == key) return false
+        prefs.edit().putString("boundary_$id", key).apply()
+        return true
+    }
+
+    fun stopLive(context: Context, id: Int) {
+        context.getSharedPreferences(FILE, Context.MODE_PRIVATE).edit().putLong("liveUntil_$id", 0).apply()
+    }
+
     fun liveUntil(context: Context, id: Int): Long =
         context.getSharedPreferences(FILE, Context.MODE_PRIVATE).getLong("liveUntil_$id", 0L)
     fun departures(context: Context, id: Int): List<Long> {
